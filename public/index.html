@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Recommendation</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="container">
+        <h1>Movie Recommendation</h1>
+        <p class="subtitle">
+          Content-based recommendations powered by IMDb metadata.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="search-section" aria-labelledby="search-title">
+        <div class="section-header">
+          <h2 id="search-title">Find a movie</h2>
+          <p>Search for a movie and we'll show five similar picks.</p>
+        </div>
+        <label class="search-label" for="movie-search">Search movies</label>
+        <div class="search-row">
+          <input
+            id="movie-search"
+            class="search-input"
+            type="search"
+            placeholder="Search by title, year, genre..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <span id="result-count" class="result-count" aria-live="polite"></span>
+        </div>
+        <ul
+          id="search-results"
+          class="search-results"
+          role="listbox"
+          aria-label="Movie results"
+          hidden
+        ></ul>
+      </section>
+
+      <section
+        id="selected-section"
+        class="selected-section"
+        aria-live="polite"
+        hidden
+      >
+        <div class="section-header">
+          <h2>Selected movie</h2>
+        </div>
+        <div id="selected-movie" class="selected-movie"></div>
+      </section>
+
+      <section
+        id="recommendations-section"
+        class="recommendations-section"
+        aria-live="polite"
+        hidden
+      >
+        <div class="section-header">
+          <h2>Recommended for you</h2>
+          <p>Top five movies most similar to your selection.</p>
+        </div>
+        <div
+          id="recommendations-grid"
+          class="recommendations-grid"
+          role="list"
+        ></div>
+        <div id="recommendations-status" class="status" role="status"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="container">
+        <p>One deployment · Netlify static + serverless functions</p>
+      </div>
+    </footer>
+
+    <template id="movie-card-template">
+      <article class="movie-card" role="listitem">
+        <div class="movie-card__media">
+          <img class="movie-card__poster" alt="" loading="lazy" />
+        </div>
+        <div class="movie-card__body">
+          <header class="movie-card__header">
+            <h3 class="movie-card__title"></h3>
+            <div class="movie-card__meta">
+              <span class="movie-card__year"></span>
+              <span class="movie-card__dot">•</span>
+              <span class="movie-card__runtime"></span>
+              <span class="movie-card__dot">•</span>
+              <span class="movie-card__rating"></span>
+            </div>
+          </header>
+          <div class="movie-card__tags">
+            <span class="movie-card__certificate"></span>
+            <span class="movie-card__genre"></span>
+          </div>
+          <p class="movie-card__overview"></p>
+          <div class="movie-card__credits">
+            <p><strong>Director:</strong> <span class="movie-card__director"></span></p>
+            <p><strong>Stars:</strong> <span class="movie-card__stars"></span></p>
+            <p class="movie-card__votes-line">
+              <strong>Votes:</strong> <span class="movie-card__votes"></span>
+              <span class="movie-card__gross-line">
+                · <strong>Gross:</strong> <span class="movie-card__gross"></span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
